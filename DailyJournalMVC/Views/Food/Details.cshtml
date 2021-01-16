@@ -1,0 +1,74 @@
+﻿@model DailyJournal.Models.FoodModels.FoodDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FoodDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Serving)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serving)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carbs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carbs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Protein)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Protein)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fiber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.FoodId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
