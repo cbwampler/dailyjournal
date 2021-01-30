@@ -1,4 +1,5 @@
 ﻿using DailyJournal.Models.MealModels;
+using DailyJournal.Models.ViewModels;
 using DailyJournal.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -24,19 +25,25 @@ namespace DailyJournalMVC.Controllers
         //GET:  Create Meal
         public ActionResult Create()
         {
-            return View(new MealCreate());
+            var service = CreateMealService();
+            var foodsList = service.FoodMenuItems();
+            ViewBag.Foods = new MultiSelectList(foodsList, "Value", "Text");
+            return View(new MealEntryData());
         }
 
         //POST:  Create Meal
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(MealCreate model)
+        public ActionResult Create(MealEntryData viewModel)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) return View(viewModel);
+
 
             var service = CreateMealService();
+            var foodsList = service.FoodMenuItems();
+            ViewBag.Foods = new MultiSelectList(foodsList, "Value", "Text");
 
-            if (service.CreateMeal(model))
+            if (service.CreateMeal(viewModel))
             {
                 TempData["SaveResult"] = "Your meal was successfully created";
                 return RedirectToAction("Index");
@@ -44,52 +51,67 @@ namespace DailyJournalMVC.Controllers
 
             ModelState.AddModelError("", "Meal could not be created.");
 
-            return View(model);
+            return View(viewModel);
         }
 
+        //GET: Meal Details by ID
         public ActionResult Details(int id)
         {
             var svc = CreateMealService();
             var model = svc.GetMealById(id);
-           
+
             return View(model);
         }
 
+        //GET:  Edit Meal
         public ActionResult Edit(int id)
         {
             var service = CreateMealService();
+            var foodslist = service.FoodMenuItems();
+            
+            ViewBag.Foods = new MultiSelectList(foodslist, "Value", "Text");
+               
             var detail = service.GetMealById(id);
-            var model = new MealEdit
+            var viewModel = new MealEntryData
             {
                 MealId = detail.MealId,
                 MealName = detail.MealName,
-            };
-            return View(model);
+                WeekDay = detail.WeekDay,
+                MealDate = detail.MealDate,
+                MealTime = detail.MealTime,
+                Notes = detail.Notes,
+                SelectedFoodIds = detail.SelectedFoodIds
+            };       
+            return View(viewModel);
         }
-
+        //POST: Edit Meal
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, MealEdit model)
+        public ActionResult Edit(int id, MealEntryData viewModel)
         {
-            if (!ModelState.IsValid) return View(model);
-            if (model.MealId != id)
+            if (!ModelState.IsValid) return View(viewModel);
+            
+            if (viewModel.MealId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
-                return View(model);
+                return View(viewModel);
             }
 
             var service = CreateMealService();
+            var foodsList = service.FoodMenuItems();
+            ViewBag.Foods = new MultiSelectList(foodsList, "Value", "Text");
 
-            if (service.UpdateMeal(model))
+
+            if (service.UpdateMeal(viewModel))
             {
                 TempData["SaveResult"] = "Your meal was successfully updated.";
                 return RedirectToAction("Index");
             }
 
             ModelState.AddModelError("", "Your meal could not be updated.");
-            return View(model);
+            return View(viewModel);
         }
-
+        //GET:  Delete Meal
         public ActionResult Delete(int id)
         {
             var svc = CreateMealService();
@@ -98,15 +120,24 @@ namespace DailyJournalMVC.Controllers
             return View(model);
         }
 
+        //POST:  Delete Meal
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeletePost(int id, MealDetail model)
         {
+            if (!ModelState.IsValid) return View(model);
+
             var service = CreateMealService();
             service.DeleteMeal(id);
+
+            if (service.DeleteMeal(id))
+            {
             TempData["SaveResult"] = "Your Meal has been successfully deleted";
             return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Your meal could not be deleted.");
+            return View(model);
         }
 
         private MealService CreateMealService()

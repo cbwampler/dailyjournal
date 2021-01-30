@@ -1,5 +1,6 @@
 ﻿using DailyJournal.Models.FoodModels;
 using DailyJournal.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,10 @@ namespace DailyJournalMVC.Controllers
         // GET: List of Foods
         public ActionResult Index()
         {
-            var service = new FoodService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new FoodService(userId);
             var model = service.GetFoods();
+
             return View(model); 
         }
 
@@ -62,15 +65,10 @@ namespace DailyJournalMVC.Controllers
             var model = new FoodEdit
             {
                 FoodId = detail.FoodId,
-                FoodName = detail.FoodName,
-                Serving = detail.Serving,
-                Calories = detail.Calories,
-                Carbs = detail.Carbs,
-                Fat = detail.Fat,
-                Sugar = detail.Sugar,
-                Protein = detail.Protein,
-                Fiber = detail.Fiber
+                FoodItem = detail.FoodItem,
+                Calories = detail.Calories
             };
+            
             return View(model);
         }
 
@@ -121,8 +119,9 @@ namespace DailyJournalMVC.Controllers
 
         private FoodService CreateFoodService()
         {
-            var service = new FoodService();
-            return new FoodService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new FoodService(userId);
+            return new FoodService(userId);
         }
     }
 

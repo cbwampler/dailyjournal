@@ -64,7 +64,6 @@ C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.AspNet.Identit
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.Owin.dll
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.Owin.Security.Cookies.dll
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.Owin.Security.dll
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.Owin.Security.Facebook.dll
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.Owin.Security.Google.dll
@@ -115,3 +114,7 @@ C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\Microsoft.CodeDom.Provid
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\obj\Debug\DailyJournalMVC.csproj.CopyComplete
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\obj\Debug\DailyJournalMVC.dll
 C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\obj\Debug\DailyJournalMVC.pdb
+C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\roslyn\System.Buffers.dll
+C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\roslyn\System.Memory.dll
+C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\roslyn\System.Numerics.Vectors.dll
+C:\ElevenFiftyProjects\DailyJournal\DailyJournalMVC\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll

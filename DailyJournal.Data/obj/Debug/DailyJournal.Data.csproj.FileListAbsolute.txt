@@ -27,7 +27,5 @@ C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\bin\Debug\System.Web.Razor
 C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\bin\Debug\System.Web.WebPages.xml
 C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\bin\Debug\System.Web.WebPages.Razor.xml
-C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\obj\Debug\DailyJournal.Data.Migrations.InitialCreate.resources
+C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\obj\Debug\DailyJournal.Data.Migrations.initialdb.resources
 C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\obj\Debug\DailyJournal.Data.csproj.GenerateResource.cache
-C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\obj\Debug\DailyJournal.Data.Migrations.update1.resources
-C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Data\obj\Debug\DailyJournal.Data.Migrations.update2.resources

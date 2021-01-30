@@ -27,3 +27,6 @@ C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Models\bin\Debug\System.Web.Raz
 C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Models\bin\Debug\System.Web.WebPages.xml
 C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Models\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Models\bin\Debug\System.Web.WebPages.Razor.xml
+C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Models\bin\Debug\DailyJournal.Data.dll
+C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Models\bin\Debug\DailyJournal.Data.pdb
+C:\ElevenFiftyProjects\DailyJournal\DailyJournal.Models\bin\Debug\DailyJournal.Data.dll.config

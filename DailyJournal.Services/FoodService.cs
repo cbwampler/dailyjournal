@@ -1,30 +1,31 @@
-﻿using DailyJournal.Data;
-using DailyJournal.Data.Contexts;
+﻿using DailyJournal.Data.Contexts;
 using DailyJournal.Data.Entities;
 using DailyJournal.Models.FoodModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DailyJournal.Services
 {
     public class FoodService
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
+
+        private readonly Guid _userId;
+        public FoodService(Guid userId)
+        {
+            _userId = userId;
+        }
+
         public bool CreateFood(FoodCreate model)
         {
             var entity = new Food()
             {
-                FoodName = model.FoodName,
-                Serving = model.Serving,
-                Calories = model.Calories,
-                Carbs = model.Carbs,
-                Protein = model.Protein,
-                Fat = model.Fat,
-                Fiber = model.Fiber
+                OwnerId = _userId,
+                FoodItem = model.FoodItem,
+                Calories = model.Calories
             };
+
             _db.Foods.Add(entity);
             return _db.SaveChanges() == 1;
         }
@@ -33,18 +34,15 @@ namespace DailyJournal.Services
         {
             var query = _db
                 .Foods
+                .Where(e => e.OwnerId == _userId)
                 .Select(
                     e =>
                         new FoodListItem
                         {
                             FoodId = e.FoodId,
-                            FoodName = e.FoodName,
-                            Serving = e.Serving,
-                            Calories = e.Calories,
-                            Carbs = e.Carbs,
-                            Protein = e.Protein,
-                            Fat = e.Fat,
-                            Fiber = e.Fiber
+                            FoodItem  = e.FoodItem,
+                            Calories = e.Calories
+                            
                         }
                 );
             return query.ToArray();
@@ -54,36 +52,25 @@ namespace DailyJournal.Services
         {
             var entity = _db
                 .Foods
-                .Single(e => e.FoodId == id);
+                .Single(e => e.FoodId == id && e.OwnerId == _userId);
             return
                  new FoodDetail
                  {
                      FoodId = entity.FoodId,
-                     FoodName = entity.FoodName,
-                     Serving = entity.Serving,
-                     Calories = entity.Calories,
-                     Carbs = entity.Carbs,
-                     Protein = entity.Protein,
-                     Fat = entity.Fat,
-                     Fiber = entity.Fiber
+                     FoodItem = entity.FoodItem,
+                     Calories = entity.Calories
                  };
          }
 
         public bool UpdateFood(FoodEdit model)
         {
-            var entity = _db
-                .Foods
-                .Single(e => e.FoodId == model.FoodId);
+            var entity = _db.Foods
+                .Single(e => e.FoodId == model.FoodId && e.OwnerId == _userId);
 
             entity.FoodId = model.FoodId;
-            entity.FoodName = model.FoodName;
-            entity.Serving = model.Serving;
+            entity.FoodItem = model.FoodItem;
             entity.Calories = model.Calories;
-            entity.Carbs = model.Carbs;
-            entity.Protein = model.Protein;
-            entity.Fat = model.Fat;
-            entity.Fiber = entity.Fiber;
-        
+            
             return _db.SaveChanges() == 1;
         }
 
@@ -92,7 +79,7 @@ namespace DailyJournal.Services
            
             var entity = _db
                 .Foods
-                .Single(e => e.FoodId == foodId);
+                .Single(e => e.FoodId == foodId && e.OwnerId == _userId);
 
             _db.Foods.Remove(entity);
 

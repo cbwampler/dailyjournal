@@ -10,17 +10,11 @@ namespace DailyJournal.Data.Entities
 {
     public class Food
     {
-        [Key]
-        public int? FoodId { get; set; }
-        public string FoodName { get; set; }
-        public string Serving { get; set; }
-        public decimal Calories { get; set; }
-        public decimal Carbs { get; set; }
-        public decimal Sugar { get; set; }
-        public decimal Protein { get; set; }
-        public decimal Fat { get; set; }
-        public decimal Fiber { get; set; }
-        public virtual ICollection<Meal> Meals { get; set; }
-
+        public int FoodId { get; set; }
+        public string FoodItem { get; set; }
+        public int Calories { get; set; }
+        public int? MealId { get; set; }
+        public virtual Meal Meal { get; set; }
+        public Guid OwnerId { get; set; }
     }
 }

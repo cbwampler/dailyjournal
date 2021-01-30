@@ -1,0 +1,75 @@
+﻿@model DailyJournal.Models.JournalModels.JournalDetail
+
+@{
+    ViewBag.Title = "Journal Details";
+}
+
+<h2>Journal Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JournalId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JournalId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JournalName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JournalName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JournalDate)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.JournalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<br />
+<h4>Meals in this Journal</h4>
+<div>
+    <table class="table">
+       
+        <tr>
+            <th>Week Day</th>
+            <th>Meal Date</th>
+            <th>Meal Time</th>
+            <th>Meal Name</th>
+            <th>Notes</th>
+        </tr>
+
+        @foreach (var item in Model.Meals)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.WeekDay)</td>
+                <td>@Html.DisplayFor(modelItem => item.MealDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.MealTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.MealName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JournalId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
